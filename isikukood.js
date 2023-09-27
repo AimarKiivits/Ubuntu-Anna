@@ -49,6 +49,10 @@ rl.question("Enter social security number: ", (userInput) => {
     else if ((sex == "7" || sex == "8")) {
         century = "21"
     }
+    else {
+        console.log("You so far from the future I dont even now what your pronouns are.")
+        process.exit()
+    }
 
     if (sex % 2 == 0) {
         sex = "Female"
@@ -106,6 +110,7 @@ rl.question("Enter social security number: ", (userInput) => {
     }
     else {
         console.log("Da fuck year is that??")
+        process.exit()
     } 
 
     if (year_born % 100 == 0) {
@@ -134,14 +139,20 @@ rl.question("Enter social security number: ", (userInput) => {
         }
         else {
             console.log("There aint a knew kind of leap year. At least to my knowledge");
+            process.exit()
         }
     }
-    if ((month30.includes(month_born) == true && day > 0 && day <= 30)) {
-        day_born = day
+
+    if ((day > 0 && day <= 30 && month30.includes(month_born) == true)) {
+        day_born = day    
     }
-    else if ((month31.includes(month_born) == true && day > 0 && day <= 31)) {
-        day_born = day
+    else if ((day > 0 && day <= 31 && month31.includes(month_born) == true )) {
+        day_born = day  
     }
+    else {
+        console.log("Its to late to think up new error codes.")
+        process.exit()
+    } 
 
     
 
@@ -262,7 +273,11 @@ rl.question("Enter social security number: ", (userInput) => {
             }
         }
     } 
-        
+
+    if (kontrollnum != isikukood.charAt(10)) {
+        console.log("Controll number at the end of social security number does not match the one from check.")
+        process.exit()
+    }
 
     console.log(sex + " with the social security number of " + isikukood + ", born on " + month_born + " " + day_born + "," + year_born + " in " + birth_place + " as the " + race_place + " child with a controll number of "+ kontrollnum + ".\nFun true/false facts: they were born on a leap year: " + isleapyear + ".");
 
